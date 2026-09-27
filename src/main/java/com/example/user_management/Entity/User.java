@@ -25,6 +25,8 @@ public class User {
 
     private String department;
 
+    private Double salary;
+
     public User() {
     }
 
@@ -84,4 +86,12 @@ public class User {
     public void setDepartment(String department) {
         this.department = department;
     }
+    public Double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Double salary) {
+        this.salary = salary;
+    }
+
 }

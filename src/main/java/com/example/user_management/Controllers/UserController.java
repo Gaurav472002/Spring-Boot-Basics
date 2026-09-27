@@ -1,5 +1,7 @@
 package com.example.user_management.Controllers;
 
+import com.example.user_management.DTO.UserRequestDTO;
+import com.example.user_management.DTO.UserResponseDTO;
 import com.example.user_management.Entity.User;
 import com.example.user_management.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,9 @@ public class UserController {
     // CREATE
     @PostMapping("createUser")
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public UserResponseDTO createUser(@RequestBody UserRequestDTO userRequestDTO) {
+
+        return userService.createUser(userRequestDTO);
     }
 
     // GET ALL

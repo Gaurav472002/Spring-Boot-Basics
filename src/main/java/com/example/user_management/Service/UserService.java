@@ -1,5 +1,7 @@
 package com.example.user_management.Service;
 
+import com.example.user_management.DTO.UserRequestDTO;
+import com.example.user_management.DTO.UserResponseDTO;
 import com.example.user_management.Entity.User;
 import com.example.user_management.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +17,27 @@ public class UserService {
 
 
     // CREATE
-    public User createUser(User user) {
-        return userRepository.save(user);
+    public UserResponseDTO createUser(UserRequestDTO userRequestDTO) {
+
+        User user = new User();
+
+        user.setName(userRequestDTO.getName());
+        user.setAge(userRequestDTO.getAge());
+        user.setDoj(userRequestDTO.getDoj());
+        user.setEmail(userRequestDTO.getEmail());
+        user.setDepartment(userRequestDTO.getDepartment());
+        user.setSalary(userRequestDTO.getSalary());
+
+        User savedUser = userRepository.save(user);
+
+        return new UserResponseDTO(
+                savedUser.getId(),
+                savedUser.getName(),
+                savedUser.getAge(),
+                savedUser.getDoj(),
+                savedUser.getEmail(),
+                savedUser.getDepartment()
+        );
     }
 
     // GET ALL
